@@ -1,0 +1,14 @@
+.ViewInRoom {
+	width: 100%;
+	position: relative;
+}
+
+.ViewInRoom-background {
+	width: 100%;
+}
+
+.ViewInRoom-foreground {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

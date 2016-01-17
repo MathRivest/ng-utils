@@ -1,0 +1,21 @@
+{
+  "name": "angular-carousel",
+  "version": "1.0.0",
+  "description": "Angular directive to slide over a collection of images.",
+  "main": "angular-carousel.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mathrivest/tbd.git"
+  },
+  "keywords": [
+    "angular",
+    "carousel",
+    "slider"
+  ],
+  "author": "Mathieu Rivest",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/mathrivest/tbd/issues"
+  },
+  "homepage": "https://github.com/mathrivest/tbd"
+}

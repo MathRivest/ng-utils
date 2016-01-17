@@ -1,0 +1,111 @@
+/*Reset*/
+body {
+	margin: 0;
+	padding: 0;
+}
+
+
+.container {
+	padding: 0 40px;
+}
+
+.Carousel {
+	overflow:hidden;
+}
+
+.Carousel-content {
+	position: relative;
+}
+
+.Carousel-content-items {
+	display: block;
+	position: relative;
+	/*left: -100%;*/
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.Carousel-content-items > li {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: lightgrey;
+	opacity: 0;
+	transform: translateX(100%);
+	transition: opacity 400ms cubic-bezier(.55, 0, .1, 1), transform 200ms cubic-bezier(.55, 0, .1, 1);
+}
+
+.Carousel-content-item.is-active {
+	position: static;
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.Carousel-content-item.is-previous {
+	transform: translateX(-100%);
+}
+
+.Carousel-content-item.is-next {
+	transform: translateX(100%);
+}
+
+.Carousel-content-item > img {
+	width: 100%;
+}
+
+
+
+.Carousel-previous {
+	z-index: 1000;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+}
+.Carousel-previous.is-disabled,
+.Carousel-next.is-disabled {
+	opacity: 0.5;
+}
+
+.Carousel-next {
+	z-index: 1000;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+}
+
+.Carousel-thumbs {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.Carousel-thumbs-item {
+	overflow: hidden;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	flex: 0 0 40px;
+	background: white;
+	border: 2px solid transparent;
+}
+
+.Carousel-thumbs-item.is-active {
+	border-color: green;
+}
+
+.Carousel-thumbs-item > img {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+}
+
+
+

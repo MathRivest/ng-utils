@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular utilities</title>
+    <link rel="stylesheet" href="styles/carousel.css">
+    <link rel="stylesheet" href="styles/view-in-room.css">
+
+</head>
+    <body ng-app="ExampleApp">
+
+        <div class="container" ng-controller="MainCtrl">
+
+            <h1>Angular view in a room example</h1>
+            <view-in-room background="room.background" foreground="room.foreground"></view-in-room>
+
+            <h1>Angular carousel example</h1>
+            <carousel carousel-items="items"></carousel>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-touch.min.js"></script>
+
+        <script src="angular-carousel.js"></script>
+        <script src="angular-view-in-a-room.js"></script>
+
+        <script type="text/ng-template" id="angular-carousel.tpl.html">
+            <div class="Carousel">
+                <div class="Carousel-content"
+                    ng-swipe-right="carousel.previous()"
+                    ng-swipe-left="carousel.next()">
+                    <ul class="Carousel-content-items">
+                        <li class="Carousel-content-item"
+                            ng-repeat="item in carousel.items"
+                            ng-class="{'is-active': $index == carousel.activeSlide, 'is-previous': $index == carousel.activeSlide - 1, 'is-next': $index == carousel.activeSlide + 1}">
+                            <span ng-if="item.title">{{item.title}}</span>
+                            <img ng-if="item.image" ng-src="{{item.image}}">
+                            <div ng-if="item.html" ng-bind-html="item.safeHtml"></div>
+                        </li>
+                    </ul>
+                    <button class="Carousel-previous"
+                        ng-class="{'is-disabled': carousel.isFirst}"
+                        ng-click="carousel.previous()">Previous</button>
+                    <button class="Carousel-next"
+                        ng-class="{'is-disabled': carousel.isLast}"
+                        ng-click="carousel.next()">Next</button>
+                </div>
+                <ul class="Carousel-thumbs">
+                    <li class="Carousel-thumbs-item"
+                        ng-class="{'is-active': $index == carousel.activeSlide}"
+                        ng-click="carousel.goToItem($index);"
+                        ng-repeat="item in carousel.items">
+                        <img ng-if="item.image" ng-src="{{item.image}}">
+                    </li>
+                </ul>
+            </div>
+        </script>
+
+        <script>
+            angular.module('ExampleApp', ['mathrivest.angular-carousel', 'mathrivest.angular-view-in-room']).
+                controller('MainCtrl', function ($scope) {
+                    $scope.items = [
+                        {
+                            html: '<view-in-room background="room.background" foreground="room.foreground"></view-in-room>'
+                        },
+                        {
+                            title: 'Item 2',
+                            image: 'images/abstract-1.jpg'
+                        },
+                        {
+                            html: '<h1>This is an html slide</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum provident consequatur nihil quibusdam eius, eligendi tenetur? Autem dolorem quod, maiores itaque eius animi ipsa iusto, voluptates quae esse magni nobis.</p>'
+                        },
+                        {
+                            title: 'Item 3',
+                            image: 'images/abstract-2.jpg'
+                        },
+                        {
+                            title: 'Item 4',
+                            image: 'images/abstract-3.jpg'
+                        },
+                        {
+                            title: 'Item 5',
+                            image: 'images/abstract-4.jpg'
+                        },
+                        {
+                            title: 'Item 6',
+                            image: 'images/abstract-3.jpg'
+                        },
+                        {
+                            title: 'Item 7',
+                            image: 'images/abstract-3.jpg'
+                        }
+                    ];
+
+                    $scope.room = {
+                        foreground: 'images/demo-art.jpg',
+                        background: 'images/demo-room-1.jpg'
+                    };
+                });
+        </script>
+    </body>
+</html>
