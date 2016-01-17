@@ -45,6 +45,7 @@ angular.module('mathrivest.angular-carousel', ['ngTouch'])
 			}],
 			link: function(scope, element) {
 				// need to compile other directives
+				//http://stackoverflow.com/questions/16479162/render-a-directive-inside-another-directive-within-repeater-template
 			}
 		}
 	});

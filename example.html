@@ -11,7 +11,10 @@
         <div class="container" ng-controller="MainCtrl">
 
             <h1>Angular view in a room example</h1>
-            <view-in-room background="room.background" foreground="room.foreground"></view-in-room>
+            <view-in-room background="{{room.background}}"
+                foreground="{{room.foreground}}"
+                x="{{room.position.x}}"
+                y="{{room.position.y}}"></view-in-room>
 
             <h1>Angular carousel example</h1>
             <carousel carousel-items="items"></carousel>
@@ -93,7 +96,11 @@
 
                     $scope.room = {
                         foreground: 'images/demo-art.jpg',
-                        background: 'images/demo-room-1.jpg'
+                        background: 'images/demo-room-1.jpg',
+                        position: {
+                            x: 250,
+                            y: 50
+                        }
                     };
                 });
         </script>

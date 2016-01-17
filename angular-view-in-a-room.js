@@ -4,19 +4,26 @@ angular.module('mathrivest.angular-view-in-room', [])
 	.directive('viewInRoom', function () {
 		return {
 			restrict: 'E',
-			replace: true,
 			scope: {
-				foreground: '=',
-				background: '=',
+				foreground: '@',
+				background: '@',
+				x: '@',
+				y: '@'
 			},
-			template: '<div class="ViewInRoom">' + '</div>',
-			controller: ['$scope', '$sce', function($scope, $sce) {
+			replace: true,
+			template: '<div class="ViewInRoom">' +
+				'<img class="ViewInRoom-foreground" src="{{foreground}}" style="left: {{x}}px; top: {{y}}px">' +
+				'<img class="ViewInRoom-background" src="{{background}}">' +
+			'</div>',
+			controller: ['$scope', '$sce', function($scope) {
+				$scope.move = function(x, y){
+					$scope.x = x;
+					$scope.y = y;
+				};
+				$scope.move(10, 10);
 			}],
 			link: function link(scope, element, attrs) {
-				console.log(scope, element, attrs);
-				var foreground = angular.element('<img class="ViewInRoom-foreground" src="'+scope.foreground+'">'),
-					background = angular.element('<img class="ViewInRoom-background" src="'+scope.background+'">');
-				element.append(background).append(foreground);
+				
 			}
 		}
 	});
