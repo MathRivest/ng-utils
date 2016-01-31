@@ -6,7 +6,7 @@ body {
 
 
 .container {
-	padding: 0 40px;
+	padding: 40px;
 }
 
 .Carousel {
@@ -50,6 +50,10 @@ body {
 
 .Carousel-content-item.is-next {
 	transform: translateX(100%);
+}
+
+.Carousel-content-items.is-nonconsecutive li{
+	transition: opacity 400ms cubic-bezier(.55, 0, .1, 1);
 }
 
 .Carousel-content-item > img {

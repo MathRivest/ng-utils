@@ -11,11 +11,11 @@
         <div class="container" ng-controller="MainCtrl">
 
             <h1>Angular view in a room example</h1>
-            <view-in-room background="{{room.background}}"
+<!--             <view-in-room background="{{room.background}}"
                 foreground="{{room.foreground}}"
                 x="{{room.position.x}}"
                 y="{{room.position.y}}"></view-in-room>
-
+ -->
             <h1>Angular carousel example</h1>
             <carousel carousel-items="items"></carousel>
         </div>
@@ -31,11 +31,10 @@
                 <div class="Carousel-content"
                     ng-swipe-right="carousel.previous()"
                     ng-swipe-left="carousel.next()">
-                    <ul class="Carousel-content-items">
+                    <ul class="Carousel-content-items" ng-class="{'is-nonconsecutive': carousel.isNonConsecutive}">
                         <li class="Carousel-content-item"
                             ng-repeat="item in carousel.items"
                             ng-class="{'is-active': $index == carousel.activeSlide, 'is-previous': $index == carousel.activeSlide - 1, 'is-next': $index == carousel.activeSlide + 1}">
-                            <span ng-if="item.title">{{item.title}}</span>
                             <img ng-if="item.image" ng-src="{{item.image}}">
                             <div ng-if="item.html" ng-bind-html="item.safeHtml"></div>
                         </li>

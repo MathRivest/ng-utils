@@ -19,10 +19,15 @@ angular.module('mathrivest.angular-carousel', ['ngTouch'])
 
 				function goToItem(index) {
 					if(index <= $scope.carousel.items.length - 1 && index >= 0) {
+						$scope.carousel.isNonConsecutive = true;
+						if($scope.carousel.activeSlide == index + 1 || $scope.carousel.activeSlide == index - 1){
+							$scope.carousel.isNonConsecutive = false;
+						}
 						$scope.carousel.activeSlide = index;
 					}
 					$scope.carousel.isFirst = $scope.carousel.activeSlide == 0 ? true : false;
 					$scope.carousel.isLast = $scope.carousel.activeSlide == $scope.carousel.items.length - 1 ? true : false;
+
 				}
 
 				function previous() {
@@ -35,6 +40,7 @@ angular.module('mathrivest.angular-carousel', ['ngTouch'])
 
 				$scope.carousel = {
 					items: $scope.carouselItems,
+					isNonConsecutive: false,
 					activeSlide: 0,
 					isFirst: true,
 					isLast: false,
