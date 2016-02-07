@@ -35,8 +35,8 @@
                         <li class="Carousel-content-item"
                             ng-repeat="item in carousel.items"
                             ng-class="{'is-active': $index == carousel.activeSlide, 'is-previous': $index == carousel.activeSlide - 1, 'is-next': $index == carousel.activeSlide + 1}">
-                            <img ng-if="item.image" ng-src="{{item.image}}">
-                            <div ng-if="item.html" ng-bind-html="item.safeHtml"></div>
+                            <img ng-if="item.image && !item.html" ng-src="{{item.image}}">
+                            <div ng-if="item.html" bind-html-compile="item.safeHtml"></div>
                         </li>
                     </ul>
                     <button class="Carousel-previous"
@@ -60,9 +60,20 @@
         <script>
             angular.module('ExampleApp', ['mathrivest.angular-carousel', 'mathrivest.angular-view-in-room']).
                 controller('MainCtrl', function ($scope) {
+
+                    $scope.room = {
+                        foreground: 'images/demo-art-2.jpg',
+                        background: 'images/demo-room-2.jpg',
+                        position: {
+                            x: 200,
+                            y: 12
+                        }
+                    };
+
                     $scope.items = [
                         {
-                            html: '<view-in-room background="room.background" foreground="room.foreground"></view-in-room>'
+                            image: 'images/demo-room-2.jpg',
+                            html: '<view-in-room background="' + $scope.room.background + '" foreground="' + $scope.room.foreground + '" x="' + $scope.room.position.x + '" y="' + $scope.room.position.y + '"></view-in-room>'
                         },
                         {
                             title: 'Item 2',
@@ -93,14 +104,6 @@
                         }
                     ];
 
-                    $scope.room = {
-                        foreground: 'images/demo-art-2.jpg',
-                        background: 'images/demo-room-2.jpg',
-                        position: {
-                            x: 200,
-                            y: 12
-                        }
-                    };
                 });
         </script>
     </body>
