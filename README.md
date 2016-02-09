@@ -47,7 +47,7 @@ When the display is resized (when on a mobile device, tablet etc) the ratios wil
 
 * Responsive
 * Keeps proportions when resized
-* Fullscreen mode
+* Fullscreen mode (Not ready yet)
 
 ## How to use
 
