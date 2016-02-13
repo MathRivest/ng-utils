@@ -3,12 +3,27 @@
 	position: relative;
 }
 
+.ViewInRoom.is-fullscreen {
+	z-index: 1000;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .ViewInRoom-background {
 	width: 100%;
 }
 
 .ViewInRoom-foreground {
+	z-index: 1;
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+.ViewInRoom-fullscreenBtn {
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	right: 0;
 }

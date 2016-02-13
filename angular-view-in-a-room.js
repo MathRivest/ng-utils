@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mathrivest.angular-view-in-room', [])
-	.directive('viewInRoom', function ($timeout, $window) {
+	.directive('viewInRoom', function ($timeout, $window, $compile) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -11,17 +11,27 @@ angular.module('mathrivest.angular-view-in-room', [])
 				y: '@'
 			},
 			replace: true,
+			transclude: true,
 			template: '<div class="ViewInRoom">' +
 				'<img class="ViewInRoom-background" src="{{background}}">' +
 				'<img class="ViewInRoom-foreground" src="{{foreground}}">' +
 			'</div>',
-			controller: ['$scope', '$sce', function($scope) {
-				$scope.move = function(x, y){
-					$scope.x = x;
-					$scope.y = y;
+			controller: function($scope, $element){
+				var fsElement = null,
+					elInitialContainer = $element.parent();
+
+				$scope.toggleFs = function() {
+					if(fsElement){
+						fsElement.removeClass('is-fullscreen');
+						elInitialContainer.append(fsElement)
+						fsElement = null;
+					}else{
+						fsElement = $element;
+						fsElement.addClass('is-fullscreen');
+						angular.element(document.body).append(fsElement);
+					}
 				};
-				$scope.move(10, 10);
-			}],
+			},
 			link: function link(scope, element, attrs) {
 				var bg = element.find('img')[0],
 					fg = element.find('img')[1];
@@ -38,9 +48,18 @@ angular.module('mathrivest.angular-view-in-room', [])
 					fg.style.top = finalTop + 'px';
 				};
 
+				var initFs = function() {
+					var fsButton = angular.element('<button class="ViewInRoom-fullscreenBtn">Toggle Fullscreen</button>');
+					fsButton.bind('click', function(){
+						scope.toggleFs();
+					});
+					element.append(fsButton);
+				};
+
 				// Wait for images to load
 				bg.onload = function() {
 					resize();
+					initFs();
 				};
 
 				// Resize event performance
@@ -48,7 +67,7 @@ angular.module('mathrivest.angular-view-in-room', [])
 				angular.element($window).bind('resize', function() {
 					clearTimeout(wait);
 					wait = setTimeout(resize, 0);
-				})
+				});
 			}
 		}
 	});

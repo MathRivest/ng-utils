@@ -10,9 +10,11 @@
 * Responsive
 
 ## How to use
+
 ```html
 <carousel carousel-items="items"></carousel>
 ```
+
 ```javascript
 angular.module('ExampleApp', ['mathrivest.angular-carousel']).controller('MainCtrl', function ($scope) {
 
@@ -32,13 +34,14 @@ angular.module('ExampleApp', ['mathrivest.angular-carousel']).controller('MainCt
         {
          image: 'images/demo-room-2.jpg',
          html: '<h1>Html slide example</h1>'
-		},
+        },
     ];
 
 });
 ```
 
 # Angular View in a Room
+
 Provided foreground and background assets, the View in a Room directive will display the images over each others, calculate the positions and keep the ratios correct. The position is based off the natural sizes of the images.
 
 When the display is resized (when on a mobile device, tablet etc) the ratios will be kept and the position will adjust accordingly.
@@ -53,21 +56,21 @@ When the display is resized (when on a mobile device, tablet etc) the ratios wil
 
 ```html
 <view-in-room background="{{room.background}}"
-	foreground="{{room.foreground}}"
-	x="{{room.position.x}}"
-	y="{{room.position.y}}"></view-in-room>
+    foreground="{{room.foreground}}"
+    x="{{room.position.x}}"
+    y="{{room.position.y}}"></view-in-room>
 ```
 ```javascript
 angular.module('ExampleApp', ['mathrivest.angular-view-in-room']).controller('MainCtrl', function ($scope) {
 
-	$scope.room = {
-	    foreground: 'images/demo-art-2.jpg',
-	    background: 'images/demo-room-2.jpg',
-	    position: {
-	        x: 200,
-	        y: 12
-	    }
-	};
+    $scope.room = {
+        foreground: 'images/demo-art-2.jpg',
+        background: 'images/demo-room-2.jpg',
+        position: {
+            x: 200,
+            y: 12
+        }
+    };
 
 });
 ```
